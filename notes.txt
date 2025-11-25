@@ -1,0 +1,72 @@
+---
+const projects = [
+  { 
+    title: "Project One", 
+    category: "UI/UX Design", 
+    bg: "bg-gray-400", 
+    link: "https://github.com/username/project-satu" // Ganti dengan link asli
+  },
+  { 
+    title: "Project Two", 
+    category: "SaaS Platform", 
+    bg: "bg-slate-500", 
+    link: "https://dribbble.com/shots/project-dua" 
+  },
+  { 
+    title: "Project Three", 
+    category: "Mobile App", 
+    bg: "bg-zinc-800", 
+    link: "#" 
+  },
+  { 
+    title: "Project Four", 
+    category: "Branding", 
+    bg: "bg-stone-500", 
+    link: "#" 
+  },
+  { 
+    title: "Project Five", 
+    category: "Editorial", 
+    bg: "bg-neutral-400", 
+    link: "#" 
+  },
+  { 
+    title: "Project Six", 
+    category: "Website", 
+    bg: "bg-gray-900", 
+    link: "#" 
+  },
+];
+---
+
+<section id="project" class="py-24 bg-[#F9F9F9]">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <h2 class="text-4xl font-bold mb-2 text-black">My Projects</h2>
+        <p class="text-gray-500 mb-12">A collection of projects focused on minimalist design.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+                // PERUBAHAN DISINI: 
+                // 1. Mengubah <div> menjadi <a>
+                // 2. Menambahkan href={project.link}
+                // 3. Menambahkan target="_blank" agar membuka tab baru (opsional)
+                <a 
+                    href={project.link}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class={`group relative h-80 rounded-xl overflow-hidden cursor-pointer block hover:scale-[1.02] transition-transform duration-300 ${project.bg}`}
+                >
+                    <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
+                        <h3 class="text-white text-xl font-bold group-hover:text-yellow-300 transition-colors">{project.title}</h3>
+                        <p class="text-gray-300 text-sm">{project.category}</p>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</section> 
+
+list projek : 
+- aplikasi medicall 
+- aplikasi kriptografi 
+- capstone project 

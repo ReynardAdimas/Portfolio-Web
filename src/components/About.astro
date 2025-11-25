@@ -1,0 +1,24 @@
+<section id="about" class="py-24 bg-[#0B0E14] text-white">
+    <div class="container mx-auto px-6 max-w-5xl flex flex-col md:flex-row gap-12 items-start">
+        
+        <div class="w-full md:w-1/3">
+            <img src="/profile.jpg" alt="Profile" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover grayscale mx-auto md:mx-0 bg-gray-700" />
+        </div>
+
+        <div class="w-full md:w-2/3">
+            <h2 class="text-4xl font-bold mb-6">About Me</h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                A concise, single-paragraph introduction detailing my professional background, passion, and unique value proposition. I focus on creating clean, user-centric designs that solve real-world problems.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4">Skills & Expertise</h3>
+            <div class="flex flex-wrap gap-3">
+                {['Competitive Programmer', 'ML Enthusiast', 'C++ Lovers'].map((skill) => (
+                    <span class="bg-[#1F222B] px-4 py-2 rounded-md text-sm text-gray-300 border border-gray-700">
+                        {skill}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>

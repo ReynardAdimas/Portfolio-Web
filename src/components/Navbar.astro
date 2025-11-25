@@ -1,0 +1,71 @@
+---
+const navLinks = [
+    { name: "Projects", href: "#project" },
+    { name: "Achievement", href: "#achievement" }, 
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
+];
+---
+
+<nav class="absolute top-0 w-full z-50">
+    <div class="container mx-auto px-6 py-6 flex justify-between items-center">
+        
+        <a href="/" class="text-xl font-bold tracking-tight text-black z-50 relative">
+            Reynard Adimas N.
+        </a>
+
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+            {navLinks.map(link => (
+                <a href={link.href} class="hover:text-black transition-colors">
+                    {link.name}
+                </a>
+            ))}
+        </div>
+
+        <button id="menu-btn" class="block md:hidden z-50 focus:outline-none">
+            <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-black">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden w-8 h-8 text-black">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white flex flex-col items-center justify-center space-y-8 text-2xl font-bold translate-x-full transition-transform duration-300 ease-in-out md:hidden z-40">
+        {navLinks.map(link => (
+            <a href={link.href} class="mobile-link text-black hover:text-gray-500">
+                {link.name}
+            </a>
+        ))}
+    </div>
+</nav>
+
+<script>
+    // Script sederhana untuk logika Toggle Menu
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    // Fungsi Toggle
+    menuBtn?.addEventListener('click', () => {
+        // Geser menu masuk/keluar
+        mobileMenu?.classList.toggle('translate-x-full');
+        
+        // Ganti icon hamburger dengan silang
+        iconMenu?.classList.toggle('hidden');
+        iconClose?.classList.toggle('hidden');
+    });
+
+    // Tutup menu saat salah satu link diklik (agar user bisa melihat konten)
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu?.classList.add('translate-x-full');
+            iconMenu?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+        });
+    });
+</script>
