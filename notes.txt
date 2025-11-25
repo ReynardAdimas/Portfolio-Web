@@ -70,3 +70,4 @@ list projek :
 - aplikasi medicall 
 - aplikasi kriptografi 
 - capstone project 
+- project gps
