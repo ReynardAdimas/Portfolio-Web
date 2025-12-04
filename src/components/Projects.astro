@@ -1,11 +1,20 @@
     ---
     const projects = [
-    { title: "Project One", category: "UI/UX Design", bg: "bg-gray-400" }, 
-    { title: "Project Two", category: "SaaS Platform", bg: "bg-slate-500" },
-    { title: "Project Three", category: "Mobile App", bg: "bg-zinc-800" },
-    { title: "Project Four", category: "Branding", bg: "bg-stone-500" },
-    { title: "Project Five", category: "Editorial", bg: "bg-neutral-400" },
-    { title: "Project Six", category: "Website", bg: "bg-gray-900" },
+    { title: "MediCall", 
+      category: "Mobile App", 
+      bg: "bg-gray-400", 
+      link: "https://github.com/ReynardAdimas/medicall" 
+    }, 
+    { title: "Nemu Barang", 
+      category: "LBS Web Application", 
+      bg: "bg-slate-500", 
+      link : "https://github.com/ReynardAdimas/nemu-barang" 
+    },
+    { title: "Crypt Web", 
+      category: "Cryptography Web Application", 
+      bg: "bg-zinc-800", 
+      link : "https://github.com/ReynardAdimas/Tugas-Akhir-Kriptografi" 
+    },
     ];
     ---
 
@@ -16,12 +25,17 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project) => (
-                    <div class={`group relative h-80 rounded-xl overflow-hidden cursor-pointer ${project.bg}`}>
+                    <a 
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={`gropu relative h-80 rounded-xl overflow-hidden cursor-pointer block hover:scale-[1.02] transition-transform duration-300 ${project.bg}`}
+                    >
                         <div class="absolute bottom-0 left-0 w-full p-6 bg-linear-to-t from-black/80 to-transparent">
-                            <h3 class="text-white text-xl font-bold">{project.title}</h3>
+                            <h3 class="text-white text-xl font-bold group-hover:text-yellow-300 transition-colors">{project.title}</h3>
                             <p class="text-gray-300 text-sm">{project.category}</p>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </div>
