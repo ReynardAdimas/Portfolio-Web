@@ -6,9 +6,6 @@ tags: ["Rust", "OpenCV", "Image Thresholding", "Computer Vision"]
 --- 
 
 Continuing from yesterday's discussion, I've decided to build a **Marker Detection** project. My plan is to first try building it using `opencv-rust`, since it already has a built-in API for this: `cv::aruco::ArucoDetector`. After that, I plan to re-implement that API using `kornia-rs`, which I hypothesize should be doable, since `kornia-rs` already has the basic functions I need.
-
-<img src="../image/marker-image.webp" alt="" style="display: inline-block; height: 1.25rem; width: auto; vertical-align: text-bottom; margin: 0 0.25rem;"/>
-*(Example of markers, taken from the OpenCV website)*
  
 To build the detector, I first need to understand a few things about how it works. Today I learned how to apply grayscale conversion in both libraries. This matters because marker decoders operate on **binary images** — images that only have 2 possible values: 0 (usually representing black) and 1 (usually representing white). These images have a 1-bit representation characteristic, where each pixel only requires 1 bit of data in the computer (2^1 = 2 possible values).
  
