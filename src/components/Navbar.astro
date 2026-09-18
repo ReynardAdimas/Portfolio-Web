@@ -1,33 +1,44 @@
 ---
+interface Props {
+    theme?: 'light' | 'dark';
+}
+
+const { theme = 'light' } = Astro.props as Props;
+const isDark = theme === 'dark';
+
 const navLinks = [
     { name: "Projects", href: "#project" },
-    { name: "Achievement", href: "#achievement" }, 
+    { name: "Achievement", href: "#achievement" },
     { name: "About", href: "#about" },
+    { name: "Journal", href: "/journal" },
     { name: "Contact", href: "#contact" },
 ];
 ---
 
 <nav class="absolute top-0 w-full z-50">
     <div class="container mx-auto px-6 py-6 flex justify-between items-center">
-        
-        <a href="/" class="text-xl font-bold tracking-tight text-black z-50 relative">
+
+        <a
+            href="/"
+            class={`text-xl font-bold tracking-tight z-50 relative ${isDark ? 'text-white' : 'text-black'}`}
+        >
             Reynard Adimas N.
         </a>
 
-        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+        <div class={`hidden md:flex space-x-8 text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
             {navLinks.map(link => (
-                <a href={link.href} class="hover:text-black transition-colors">
+                <a href={link.href} class={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-black'}`}>
                     {link.name}
                 </a>
             ))}
         </div>
 
         <button id="menu-btn" class="block md:hidden z-50 focus:outline-none">
-            <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-black">
+            <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class={`w-8 h-8 ${isDark ? 'text-white' : 'text-black'}`}>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-            
-            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden w-8 h-8 text-black">
+
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class={`hidden w-8 h-8 ${isDark ? 'text-white' : 'text-black'}`}>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
@@ -54,7 +65,7 @@ const navLinks = [
     menuBtn?.addEventListener('click', () => {
         // Geser menu masuk/keluar
         mobileMenu?.classList.toggle('translate-x-full');
-        
+
         // Ganti icon hamburger dengan silang
         iconMenu?.classList.toggle('hidden');
         iconClose?.classList.toggle('hidden');

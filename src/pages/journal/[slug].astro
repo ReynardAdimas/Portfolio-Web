@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('journal');
+    return entries.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} — Journal`}>
+    <main>
+        <Navbar theme="dark" />
+        <article class="pt-40 pb-24 bg-[#0B0E14] text-white min-h-screen">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <a href="/journal" class="text-sm text-gray-500 hover:text-white transition-colors">&larr; Back to Journal</a>
+
+                <p class="text-sm text-gray-500 mt-6 mb-2">
+                    {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+                <h1 class="text-4xl md:text-5xl font-bold mb-8">{entry.data.title}</h1>
+
+                <div class="flex flex-wrap gap-2 mb-12">
+                    {entry.data.tags.map((tag) => (
+                        <span class="text-xs bg-[#252A36] px-3 py-1 rounded-md text-gray-300 border border-gray-700">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+
+                <div class="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-400 prose-strong:text-white prose-code:text-yellow-300">
+                    <Content />
+                </div>
+            </div>
+        </article>
+    </main>
+</Layout>

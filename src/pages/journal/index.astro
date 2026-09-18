@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('journal')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title="Journal — Reynard Adimas N.">
+    <main>
+        <Navbar theme="dark" />
+        <section class="pt-40 pb-24 bg-[#0B0E14] text-white min-h-screen">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h1 class="text-5xl font-bold mb-2">Daily Journal</h1>
+                <p class="text-gray-400 mb-16">Basic Daily Journal</p>
+
+                <div class="space-y-6">
+                    {entries.map((entry) => (
+                        <a
+                            href={`/journal/${entry.id}`}
+                            class="group block bg-[#161A23] p-6 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1"
+                        >
+                            <p class="text-sm text-gray-500 mb-2">
+                                {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                            </p>
+                            <h2 class="text-2xl font-bold group-hover:text-yellow-300 transition-colors mb-2">
+                                {entry.data.title}
+                            </h2>
+                            <p class="text-gray-400">{entry.data.summary}</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                {entry.data.tags.map((tag) => (
+                                    <span class="text-xs bg-[#252A36] px-3 py-1 rounded-md text-gray-300 border border-gray-700">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
